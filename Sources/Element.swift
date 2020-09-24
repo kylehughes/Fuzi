@@ -183,3 +183,44 @@ open class XMLElement: XMLNode {
     return attr(name)
   }
 }
+
+// MARK: - Fork(@kylehughes)
+
+// TODO: Investigate if there are existing implementations that can be copied from source, like from Nokogiri or Ono.
+
+extension XMLElement {
+    // MARK: Public Instance Interface
+    
+    public func remove() {
+        unlinkAndFree(element: self)
+    }
+    
+    public func remove(child childToRemove: XMLElement) {
+        _ = removeWithReport(child: childToRemove)
+    }
+    
+    public func removeWithReport(child childToRemove: XMLElement) -> Bool {
+        for child in children {
+            guard child == childToRemove else {
+                guard child.removeWithReport(child: childToRemove) else {
+                    continue
+                }
+                
+                return true
+            }
+            
+            unlinkAndFree(element: child)
+            
+            return true
+        }
+        
+        return false
+    }
+    
+    // MARK: Private Instance Interface
+    
+    private func unlinkAndFree(element: XMLElement) {
+        xmlUnlinkNode(element.cNode)
+        xmlFree(element.cNode)
+    }
+}
