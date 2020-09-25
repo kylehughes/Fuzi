@@ -189,8 +189,12 @@ open class XMLElement: XMLNode {
 extension XMLElement {
     // MARK: Public Instance Interface
     
-    public func copy() -> XMLElement {
-        XMLElement(cNode: xmlCopyNode(cNode, Int32(truncating: true)), document: document.copy())
+    public func copy() -> (XMLDocument, XMLElement) {
+        let documentCopy = document.copy()
+        let nodePointerCopy: xmlNodePtr = xmlCopyNode(cNode, Int32(truncating: true))
+        let elementCopy = XMLElement(cNode: nodePointerCopy, document: documentCopy)
+        
+        return (documentCopy, elementCopy)
     }
     
     public func remove() {
