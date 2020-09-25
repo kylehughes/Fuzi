@@ -186,8 +186,6 @@ open class XMLElement: XMLNode {
 
 // MARK: - Fork(@kylehughes)
 
-// TODO: Investigate if there are existing implementations that can be copied from source, like from Nokogiri or Ono.
-
 extension XMLElement {
     // MARK: Public Instance Interface
     
