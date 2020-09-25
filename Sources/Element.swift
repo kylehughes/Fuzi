@@ -190,7 +190,7 @@ extension XMLElement {
     // MARK: Public Instance Interface
     
     public func copy() -> XMLElement {
-        XMLElement(cNode: xmlCopyNode(cNode, Int32(truncating: true)), document: document)
+        XMLElement(cNode: xmlCopyNode(cNode, Int32(truncating: true)), document: document.copy())
     }
     
     public func remove() {
