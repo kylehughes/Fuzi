@@ -228,6 +228,6 @@ extension XMLDocument {
     // MARK: Public Instance Interface
     
     public func copy() -> XMLDocument {
-        XMLDocument(cDocument: xmlCopyDoc(cDocument, Int32(truncating: true)))
+        XMLDocument(cDocument: xmlCopyDoc(cDocument, 1))
     }
 }

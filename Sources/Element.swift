@@ -191,7 +191,7 @@ extension XMLElement {
     
     public func copy() -> (XMLDocument, XMLElement) {
         let documentCopy = document.copy()
-        let nodePointerCopy: xmlNodePtr = xmlCopyNode(cNode, Int32(truncating: true))
+        let nodePointerCopy: xmlNodePtr = xmlCopyNode(cNode, 1)
         let elementCopy = XMLElement(cNode: nodePointerCopy, document: documentCopy)
         
         return (documentCopy, elementCopy)
