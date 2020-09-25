@@ -176,13 +176,3 @@ extension XMLNode: Equatable {}
 public func ==(lhs: XMLNode, rhs: XMLNode) -> Bool {
   return lhs.cNode == rhs.cNode
 }
-
-// MARK: - Fork(@kylehughes)
-
-extension XMLNode {
-    // MARK: Public Instance Interface
-    
-    public func copy() -> XMLNode {
-        XMLNode(cNode: xmlCopyNode(cNode, Int32(truncating: true)), document: document)
-    }
-}
