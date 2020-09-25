@@ -62,7 +62,7 @@ open class XMLDocument {
   }()
   
   // MARK: - Creating XML Documents
-  fileprivate let cDocument: xmlDocPtr
+  internal let cDocument: xmlDocPtr
   
   /**
   Creates and returns an instance of XMLDocument from an XML string, throwing XMLError if an error occured while parsing the XML.
@@ -228,6 +228,6 @@ extension XMLDocument {
     // MARK: Public Instance Interface
     
     public func copy() -> XMLDocument {
-        XMLDocument(cDocument: xmlCopyDoc(cDocument, 0))
+        XMLDocument(cDocument: xmlCopyDoc(cDocument, 1))
     }
 }

@@ -119,7 +119,7 @@ open class XMLNode {
   // MARK: - Accessing Contents
   /// Whether this is a HTML node
   open var isHTML: Bool {
-    return UInt32(self.cNode.pointee.doc.pointee.properties) & XML_DOC_HTML.rawValue == XML_DOC_HTML.rawValue
+    return UInt32(document.cDocument.pointee.properties) & XML_DOC_HTML.rawValue == XML_DOC_HTML.rawValue
   }
 
   /// A string representation of the element's value.
@@ -134,9 +134,9 @@ open class XMLNode {
   open fileprivate(set) lazy var rawXML: String = {
     let buffer = xmlBufferCreate()
     if self.isHTML {
-      htmlNodeDump(buffer, self.cNode.pointee.doc, self.cNode)
+      htmlNodeDump(buffer, document.cDocument, self.cNode)
     } else {
-      xmlNodeDump(buffer, self.cNode.pointee.doc, self.cNode, 0, 0)
+      xmlNodeDump(buffer, document.cDocument, self.cNode, 0, 0)
     }
     let dumped = ^-^xmlBufferContent(buffer) ?? ""
     xmlBufferFree(buffer)
