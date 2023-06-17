@@ -176,3 +176,13 @@ extension XMLNode: Equatable {}
 public func ==(lhs: XMLNode, rhs: XMLNode) -> Bool {
   return lhs.cNode == rhs.cNode
 }
+
+// MARK: - Hashable Extension
+
+extension XMLNode: Hashable {
+    // MARK: Public Instance Interface
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(cNode)
+    }
+}
