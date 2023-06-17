@@ -105,20 +105,11 @@ open class XMLDocument {
   - returns: An `XMLDocument` with the contents of the specified XML string.
   */
   public convenience init(cChars: [CChar]) throws {
-    let options = Int32(XML_PARSE_NOWARNING.rawValue | XML_PARSE_NOERROR.rawValue | XML_PARSE_RECOVER.rawValue)
-    let typeOfSelf = type(of: self)
-    
-    let document = try cChars.withUnsafeBufferPointer { buffer -> xmlDocPtr in
-        guard let document = typeOfSelf.parse(buffer: buffer, options: options) else {
-            throw XMLError.lastError(defaultError: .parserFailure)
-        }
-        
-        return document
-    }
-    
-    xmlResetLastError()
-    
-    self.init(cDocument: document)
+      let buffer = cChars.withUnsafeBufferPointer { buffer in
+          UnsafeBufferPointer(rebasing: buffer[0..<buffer.count])
+      }
+      
+      try self.init(buffer: buffer)
   }
 
   /**
