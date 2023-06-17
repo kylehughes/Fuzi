@@ -212,13 +212,3 @@ open class HTMLDocument: XMLDocument {
     return htmlReadMemory(buffer.baseAddress, Int32(buffer.count), "", nil, options)
   }
 }
-
-// MARK: - Fork(@kylehughes)
-
-extension XMLDocument {
-    // MARK: Public Instance Interface
-    
-    public func copy() -> XMLDocument {
-        XMLDocument(cDocument: xmlCopyDoc(cDocument, 1))
-    }
-}
