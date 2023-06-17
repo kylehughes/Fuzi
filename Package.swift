@@ -20,10 +20,7 @@ let package = Package(
     ],
     targets: [
         .target(name: "Fuzi",
-            path: "Sources",
-            linkerSettings: [
-                .linkedLibrary("xml2")
-            ]
+            path: "Sources"
         ),
         .testTarget(
             name: "FuziTests",
