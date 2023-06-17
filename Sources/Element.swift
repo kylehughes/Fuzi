@@ -223,6 +223,6 @@ extension XMLElement {
     
     private func unlinkAndFree(element: XMLElement) {
         xmlUnlinkNode(element.cNode)
-        xmlFree(element.cNode)
+        xmlFreeNode(element.cNode)
     }
 }
