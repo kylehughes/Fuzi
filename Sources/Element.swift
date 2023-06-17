@@ -203,7 +203,7 @@ extension XMLElement {
     
     public func removeWithReport(child childToRemove: XMLElement) -> Bool {
         for child in children {
-            guard child == childToRemove else {
+            guard child.cNode == childToRemove.cNode else {
                 guard child.removeWithReport(child: childToRemove) else {
                     continue
                 }
