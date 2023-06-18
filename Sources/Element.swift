@@ -197,26 +197,12 @@ extension XMLElement {
         unlinkAndFree(element: self)
     }
     
-    public func remove(child childToRemove: XMLElement) {
-        _ = removeWithReport(child: childToRemove)
-    }
-    
-    public func removeWithReport(child childToRemove: XMLElement) -> Bool {
-        for child in children {
-            guard child.cNode == childToRemove.cNode else {
-                guard child.removeWithReport(child: childToRemove) else {
-                    continue
-                }
-                
-                return true
-            }
-            
-            unlinkAndFree(element: child)
-            
-            return true
+    public func removeSafely() {
+        guard cNode.pointee.parent != nil else {
+            return
         }
         
-        return false
+        unlinkAndFree(element: self)
     }
     
     // MARK: Private Instance Interface
