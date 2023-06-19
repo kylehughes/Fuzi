@@ -209,6 +209,9 @@ extension XMLElement {
     
     private func unlinkAndFree(element: XMLElement) {
         xmlUnlinkNode(element.cNode)
+        
+        #if !os(macOS)
         xmlFreeNode(element.cNode)
+        #endif
     }
 }
