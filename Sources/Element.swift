@@ -210,7 +210,7 @@ extension XMLElement {
     private func unlinkAndFree(element: XMLElement) {
         xmlUnlinkNode(element.cNode)
         
-        #if !os(macOS)
+        #if !os(macOS) && !targetEnvironment(macCatalyst)
         xmlFreeNode(element.cNode)
         #endif
     }
