@@ -1,4 +1,4 @@
-// swift-tools-version:5.7
+// swift-tools-version:6.2
 
 import PackageDescription
 
@@ -19,13 +19,23 @@ let package = Package(
         ),
     ],
     targets: [
-        .target(name: "Fuzi",
-            path: "Sources"
+        .target(
+            name: "Fuzi",
+            path: "Sources",
+            swiftSettings: [
+                .swiftLanguageMode(.v6),
+            ]
         ),
         .testTarget(
             name: "FuziTests",
             dependencies: ["Fuzi"],
-            path: "Tests"
+            path: "Tests",
+            resources: [
+                .copy("Resources")
+            ],
+            swiftSettings: [
+                .swiftLanguageMode(.v6),
+            ]
         )
     ]
 )

@@ -126,7 +126,7 @@ open class XMLNode {
   open fileprivate(set) lazy var stringValue : String = {
     let key = xmlNodeGetContent(self.cNode)
     let stringValue = ^-^key ?? ""
-    xmlFree(key)
+    xmlFreeMemory(key)
     return stringValue
   }()
   

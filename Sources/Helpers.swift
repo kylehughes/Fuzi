@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 
 import Foundation
-import libxml2
+@preconcurrency import libxml2
 
 // Public Helpers
 
@@ -95,16 +95,23 @@ internal extension String {
 prefix operator ^-^
 internal prefix func ^-^ <T> (ptr: UnsafePointer<T>?) -> String? {
   if let ptr = ptr {
-    return String(validatingUTF8: UnsafeRawPointer(ptr).assumingMemoryBound(to: CChar.self))
+    return String(validatingCString: UnsafeRawPointer(ptr).assumingMemoryBound(to: CChar.self))
   }
   return nil
 }
 
 internal prefix func ^-^ <T> (ptr: UnsafeMutablePointer<T>?) -> String? {
   if let ptr = ptr {
-    return String(validatingUTF8: UnsafeMutableRawPointer(ptr).assumingMemoryBound(to: CChar.self))
+    return String(validatingCString: UnsafeMutableRawPointer(ptr).assumingMemoryBound(to: CChar.self))
   }
   return nil
+}
+
+/// Safely frees memory allocated by libxml2.
+@inline(__always)
+internal func xmlFreeMemory(_ ptr: UnsafeMutableRawPointer?) {
+    guard let ptr = ptr else { return }
+    xmlFree?(ptr)
 }
 
 internal struct LinkedCNodes: Sequence, IteratorProtocol {

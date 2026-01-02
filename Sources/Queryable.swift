@@ -303,11 +303,11 @@ extension XMLElement: Queryable {
   }
 }
 
-private class RegexConstants {
+private enum RegexConstants {
   static let idRegex = try! NSRegularExpression(pattern: "\\#([\\w-_]+)", options: [])
-  
+
   static let classRegex = try! NSRegularExpression(pattern: "\\.([^\\.]+)", options: [])
-  
+
   static let attributeRegex = try! NSRegularExpression(pattern: "\\[([^\\[\\]]+)\\]", options: [])
 }
 

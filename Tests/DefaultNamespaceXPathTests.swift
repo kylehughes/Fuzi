@@ -26,7 +26,7 @@ class DefaultNamespaceXPathTests: XCTestCase {
   var document: Fuzi.XMLDocument!
   override func setUp() {
     super.setUp()
-    let filePath = Bundle(for: DefaultNamespaceXPathTests.self).url(forResource: "ocf", withExtension: "xml")!
+    let filePath = Bundle.module.url(forResource: "ocf", withExtension: "xml", subdirectory: "Resources")!
     do {
       document = try XMLDocument(data: Data(contentsOf: filePath))
     } catch {

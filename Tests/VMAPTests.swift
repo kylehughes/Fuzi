@@ -26,7 +26,7 @@ class VMAPTests: XCTestCase {
   var document: Fuzi.XMLDocument!
   override func setUp() {
     super.setUp()
-    let filePath = Bundle(for: VMAPTests.self).url(forResource: "vmap", withExtension: "xml")!
+    let filePath = Bundle.module.url(forResource: "vmap", withExtension: "xml", subdirectory: "Resources")!
     do {
       document = try XMLDocument(data: Data(contentsOf: filePath))
     } catch {

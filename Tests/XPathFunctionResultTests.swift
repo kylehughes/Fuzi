@@ -26,7 +26,7 @@ class XPathFunctionResultTests: XCTestCase {
   var document: Fuzi.XMLDocument!
   override func setUp() {
     super.setUp()
-    let filePath = Bundle(for: AtomTests.self).url(forResource: "atom", withExtension: "xml")!
+    let filePath = Bundle.module.url(forResource: "atom", withExtension: "xml", subdirectory: "Resources")!
     do {
       document = try XMLDocument(data: Data(contentsOf: filePath))
     } catch {

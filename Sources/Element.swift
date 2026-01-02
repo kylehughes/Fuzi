@@ -69,7 +69,7 @@ open class XMLElement: XMLNode {
     
     if let xmlValue = xmlValue {
       value = ^-^xmlValue
-      xmlFree(xmlValue)
+      xmlFreeMemory(xmlValue)
     }
     return value
   }

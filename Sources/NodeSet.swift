@@ -101,7 +101,7 @@ open class NodeSet: Collection {
 /// XPath selector result node set
 open class XPathNodeSet: NodeSet {
   /// Empty node set
-  public static let emptySet = XPathNodeSet(cXPath: nil, document: nil)
+  nonisolated(unsafe) public static let emptySet = XPathNodeSet(cXPath: nil, document: nil)
 
   fileprivate var cXPath: xmlXPathObjectPtr?
   
